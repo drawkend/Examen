@@ -1,0 +1,29 @@
+1,2) Dans ce code, il est crée une boucle infinie dans la liste chainée en 
+faisant pointer le dernier élément de la liste sur un noeud déjà existant. 
+Cela crée donc une boucle infinie lorsque l'on essaie de parcourir entièrement 
+la liste chainée car le pointeur next du dernier noeud pointe sur le 
+premier noeud.
+
+3) Il y a quelques années, lorsque j'ai appris le C, j'avais entendu 
+parler de l'algorithme de la Tortue et du Lièvre. En gros, la tortue et le 
+lièvre parcourent la liste... La tortue avance de 1 en 1 et le lièvre de 2 
+en 2. Si à un moment, la tortue et le lièvre ont la même position, alors 
+c'est que le lièvre est retourné en arrière et donc qu'il y a le problème 
+décrit question (1,2)
+
+4)
+int mauvaise_liste(node *head) {
+    node *tortue, *lievre;
+    tortue = head;
+    lievre = head;
+    int boucle = 0;
+    while (lievre != NULL && lievre->next != NULL) {
+        tortue = tortue->next;
+        lievre = lievre->next->next;
+        if (tortue == lievre) {
+            boucle = 1;
+        }
+    }
+    return boucle;
+}
+ 
